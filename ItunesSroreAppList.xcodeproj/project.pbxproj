@@ -21,6 +21,8 @@
 		0ECB18F9270862F100D34504 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18F8270862F100D34504 /* Api.swift */; };
 		0ECB18FB2708632B00D34504 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FA2708632B00D34504 /* ViewModelType.swift */; };
 		0ECB18FD270863D200D34504 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FC270863D200D34504 /* RootNavigationController.swift */; };
+		0ECB18FF2708DA5A00D34504 /* AppListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FE2708DA5A00D34504 /* AppListViewController.swift */; };
+		0ECB19012708E0D600D34504 /* Too100AppObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB19002708E0D600D34504 /* Too100AppObject.swift */; };
 		D37A970D637345735B115239 /* Pods_ItunesSroreAppList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4418F22DDB8704764C8BB20F /* Pods_ItunesSroreAppList.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		0ECB18F8270862F100D34504 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		0ECB18FA2708632B00D34504 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		0ECB18FC270863D200D34504 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		0ECB18FE2708DA5A00D34504 /* AppListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewController.swift; sourceTree = "<group>"; };
+		0ECB19002708E0D600D34504 /* Too100AppObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Too100AppObject.swift; sourceTree = "<group>"; };
 		1C809D91DB87A0405ED5408D /* Pods-ItunesSroreAppList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.release.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.release.xcconfig"; sourceTree = "<group>"; };
 		4418F22DDB8704764C8BB20F /* Pods_ItunesSroreAppList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItunesSroreAppList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88AB3F06EF057A643D5D22E4 /* Pods-ItunesSroreAppList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.debug.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,10 +85,10 @@
 			children = (
 				0ECB18F52708609C00D34504 /* API+SyncData */,
 				0ECB18EE27085D6800D34504 /* Storyboard */,
-				0ECB18EA27085CAF00D34504 /* ViewModel */,
 				0ECB18E927085CA800D34504 /* Model */,
-				0ECB18E827085C9700D34504 /* ViewController */,
 				0ECB18E727085C9000D34504 /* View */,
+				0ECB18EA27085CAF00D34504 /* ViewModel */,
+				0ECB18E827085C9700D34504 /* ViewController */,
 				0ECB18D327085A9C00D34504 /* AppDelegate.swift */,
 				0ECB18D527085A9C00D34504 /* SceneDelegate.swift */,
 				0ECB18DC27085AA000D34504 /* Assets.xcassets */,
@@ -106,6 +110,7 @@
 			children = (
 				0ECB18D727085A9C00D34504 /* BaseViewController.swift */,
 				0ECB18FC270863D200D34504 /* RootNavigationController.swift */,
+				0ECB18FE2708DA5A00D34504 /* AppListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				0ECB18EC27085D2A00D34504 /* ResultPayload.swift */,
+				0ECB19002708E0D600D34504 /* Too100AppObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,7 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ECB18F9270862F100D34504 /* Api.swift in Sources */,
+				0ECB19012708E0D600D34504 /* Too100AppObject.swift in Sources */,
 				0ECB18D827085A9C00D34504 /* BaseViewController.swift in Sources */,
+				0ECB18FF2708DA5A00D34504 /* AppListViewController.swift in Sources */,
 				0ECB18F027085E0A00D34504 /* UIViewShadowExtension.swift in Sources */,
 				0ECB18FD270863D200D34504 /* RootNavigationController.swift in Sources */,
 				0ECB18D427085A9C00D34504 /* AppDelegate.swift in Sources */,
