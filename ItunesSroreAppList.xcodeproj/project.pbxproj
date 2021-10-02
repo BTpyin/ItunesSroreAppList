@@ -3,27 +3,47 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024CA38FF1C9C4F611BE434F /* Pods_ItunesSroreAppList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD05A421D63620ADD18DE0E /* Pods_ItunesSroreAppList.framework */; };
 		0ECB18D427085A9C00D34504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18D327085A9C00D34504 /* AppDelegate.swift */; };
 		0ECB18D627085A9C00D34504 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18D527085A9C00D34504 /* SceneDelegate.swift */; };
-		0ECB18D827085A9C00D34504 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18D727085A9C00D34504 /* ViewController.swift */; };
+		0ECB18D827085A9C00D34504 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18D727085A9C00D34504 /* BaseViewController.swift */; };
 		0ECB18DB27085A9C00D34504 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ECB18D927085A9C00D34504 /* Main.storyboard */; };
 		0ECB18DD27085AA000D34504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ECB18DC27085AA000D34504 /* Assets.xcassets */; };
 		0ECB18E027085AA000D34504 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ECB18DE27085AA000D34504 /* LaunchScreen.storyboard */; };
+		0ECB18ED27085D2A00D34504 /* ResultPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18EC27085D2A00D34504 /* ResultPayload.swift */; };
+		0ECB18F027085E0A00D34504 /* UIViewShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18EF27085E0A00D34504 /* UIViewShadowExtension.swift */; };
+		0ECB18F227085E4100D34504 /* UIViewRoundCornerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18F127085E4100D34504 /* UIViewRoundCornerExtension.swift */; };
+		0ECB18F427085E6100D34504 /* UIColorInitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18F327085E6100D34504 /* UIColorInitExtension.swift */; };
+		0ECB18F72708620C00D34504 /* SyncDataToRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18F62708620C00D34504 /* SyncDataToRealm.swift */; };
+		0ECB18F9270862F100D34504 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18F8270862F100D34504 /* Api.swift */; };
+		0ECB18FB2708632B00D34504 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FA2708632B00D34504 /* ViewModelType.swift */; };
+		0ECB18FD270863D200D34504 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FC270863D200D34504 /* RootNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CD05A421D63620ADD18DE0E /* Pods_ItunesSroreAppList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItunesSroreAppList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ECB18D027085A9C00D34504 /* ItunesSroreAppList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesSroreAppList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ECB18D327085A9C00D34504 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ECB18D527085A9C00D34504 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0ECB18D727085A9C00D34504 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0ECB18D727085A9C00D34504 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0ECB18DA27085A9C00D34504 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0ECB18DC27085AA000D34504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ECB18DF27085AA000D34504 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ECB18E127085AA000D34504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ECB18EC27085D2A00D34504 /* ResultPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPayload.swift; sourceTree = "<group>"; };
+		0ECB18EF27085E0A00D34504 /* UIViewShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewShadowExtension.swift; sourceTree = "<group>"; };
+		0ECB18F127085E4100D34504 /* UIViewRoundCornerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCornerExtension.swift; sourceTree = "<group>"; };
+		0ECB18F327085E6100D34504 /* UIColorInitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorInitExtension.swift; sourceTree = "<group>"; };
+		0ECB18F62708620C00D34504 /* SyncDataToRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDataToRealm.swift; sourceTree = "<group>"; };
+		0ECB18F8270862F100D34504 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		0ECB18FA2708632B00D34504 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		0ECB18FC270863D200D34504 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		9A56B0BB5A22DA8CE06D8F70 /* Pods-ItunesSroreAppList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.debug.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.debug.xcconfig"; sourceTree = "<group>"; };
+		D18945E7C19A1E99C531453A /* Pods-ItunesSroreAppList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.release.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				024CA38FF1C9C4F611BE434F /* Pods_ItunesSroreAppList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +63,8 @@
 			children = (
 				0ECB18D227085A9C00D34504 /* ItunesSroreAppList */,
 				0ECB18D127085A9C00D34504 /* Products */,
+				8FBCF05C22FEC67CE73F5ABD /* Pods */,
+				90989D2C77341C227D8C0DBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +79,96 @@
 		0ECB18D227085A9C00D34504 /* ItunesSroreAppList */ = {
 			isa = PBXGroup;
 			children = (
+				0ECB18F52708609C00D34504 /* API+SyncData */,
+				0ECB18EE27085D6800D34504 /* Storyboard */,
+				0ECB18EA27085CAF00D34504 /* ViewModel */,
+				0ECB18E927085CA800D34504 /* Model */,
+				0ECB18E827085C9700D34504 /* ViewController */,
+				0ECB18E727085C9000D34504 /* View */,
 				0ECB18D327085A9C00D34504 /* AppDelegate.swift */,
 				0ECB18D527085A9C00D34504 /* SceneDelegate.swift */,
-				0ECB18D727085A9C00D34504 /* ViewController.swift */,
-				0ECB18D927085A9C00D34504 /* Main.storyboard */,
 				0ECB18DC27085AA000D34504 /* Assets.xcassets */,
-				0ECB18DE27085AA000D34504 /* LaunchScreen.storyboard */,
 				0ECB18E127085AA000D34504 /* Info.plist */,
+				0ECB18EB27085CCE00D34504 /* Extension */,
 			);
 			path = ItunesSroreAppList;
+			sourceTree = "<group>";
+		};
+		0ECB18E727085C9000D34504 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0ECB18E827085C9700D34504 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0ECB18D727085A9C00D34504 /* BaseViewController.swift */,
+				0ECB18FC270863D200D34504 /* RootNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0ECB18E927085CA800D34504 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0ECB18EC27085D2A00D34504 /* ResultPayload.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0ECB18EA27085CAF00D34504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0ECB18FA2708632B00D34504 /* ViewModelType.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0ECB18EB27085CCE00D34504 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0ECB18EF27085E0A00D34504 /* UIViewShadowExtension.swift */,
+				0ECB18F127085E4100D34504 /* UIViewRoundCornerExtension.swift */,
+				0ECB18F327085E6100D34504 /* UIColorInitExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0ECB18EE27085D6800D34504 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				0ECB18D927085A9C00D34504 /* Main.storyboard */,
+				0ECB18DE27085AA000D34504 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		0ECB18F52708609C00D34504 /* API+SyncData */ = {
+			isa = PBXGroup;
+			children = (
+				0ECB18F62708620C00D34504 /* SyncDataToRealm.swift */,
+				0ECB18F8270862F100D34504 /* Api.swift */,
+			);
+			path = "API+SyncData";
+			sourceTree = "<group>";
+		};
+		8FBCF05C22FEC67CE73F5ABD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A56B0BB5A22DA8CE06D8F70 /* Pods-ItunesSroreAppList.debug.xcconfig */,
+				D18945E7C19A1E99C531453A /* Pods-ItunesSroreAppList.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		90989D2C77341C227D8C0DBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CD05A421D63620ADD18DE0E /* Pods_ItunesSroreAppList.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0ECB18E427085AA000D34504 /* Build configuration list for PBXNativeTarget "ItunesSroreAppList" */;
 			buildPhases = (
+				D68C725E8A765380D26294CB /* [CP] Check Pods Manifest.lock */,
 				0ECB18CC27085A9C00D34504 /* Sources */,
 				0ECB18CD27085A9C00D34504 /* Frameworks */,
 				0ECB18CE27085A9C00D34504 /* Resources */,
+				C6223D823F3338BA4B0EB290 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,14 +238,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C6223D823F3338BA4B0EB290 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D68C725E8A765380D26294CB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ItunesSroreAppList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0ECB18CC27085A9C00D34504 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ECB18D827085A9C00D34504 /* ViewController.swift in Sources */,
+				0ECB18F9270862F100D34504 /* Api.swift in Sources */,
+				0ECB18D827085A9C00D34504 /* BaseViewController.swift in Sources */,
+				0ECB18F027085E0A00D34504 /* UIViewShadowExtension.swift in Sources */,
+				0ECB18FD270863D200D34504 /* RootNavigationController.swift in Sources */,
 				0ECB18D427085A9C00D34504 /* AppDelegate.swift in Sources */,
+				0ECB18F72708620C00D34504 /* SyncDataToRealm.swift in Sources */,
 				0ECB18D627085A9C00D34504 /* SceneDelegate.swift in Sources */,
+				0ECB18F427085E6100D34504 /* UIColorInitExtension.swift in Sources */,
+				0ECB18F227085E4100D34504 /* UIViewRoundCornerExtension.swift in Sources */,
+				0ECB18FB2708632B00D34504 /* ViewModelType.swift in Sources */,
+				0ECB18ED27085D2A00D34504 /* ResultPayload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,11 +439,13 @@
 		};
 		0ECB18E527085AA000D34504 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A56B0BB5A22DA8CE06D8F70 /* Pods-ItunesSroreAppList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9JQ7HF2Q6L;
+				EXCLUDED_ARCHS = "arm64 armv7 armv7s";
 				INFOPLIST_FILE = ItunesSroreAppList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,11 +460,13 @@
 		};
 		0ECB18E627085AA000D34504 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D18945E7C19A1E99C531453A /* Pods-ItunesSroreAppList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9JQ7HF2Q6L;
+				EXCLUDED_ARCHS = "arm64 armv7 armv7s";
 				INFOPLIST_FILE = ItunesSroreAppList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
