@@ -21,6 +21,7 @@
 		0ECB18F9270862F100D34504 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18F8270862F100D34504 /* Api.swift */; };
 		0ECB18FB2708632B00D34504 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FA2708632B00D34504 /* ViewModelType.swift */; };
 		0ECB18FD270863D200D34504 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB18FC270863D200D34504 /* RootNavigationController.swift */; };
+		D37A970D637345735B115239 /* Pods_ItunesSroreAppList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4418F22DDB8704764C8BB20F /* Pods_ItunesSroreAppList.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,9 @@
 		0ECB18F8270862F100D34504 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		0ECB18FA2708632B00D34504 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		0ECB18FC270863D200D34504 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		1C809D91DB87A0405ED5408D /* Pods-ItunesSroreAppList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.release.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.release.xcconfig"; sourceTree = "<group>"; };
+		4418F22DDB8704764C8BB20F /* Pods_ItunesSroreAppList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItunesSroreAppList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88AB3F06EF057A643D5D22E4 /* Pods-ItunesSroreAppList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.debug.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37A970D637345735B115239 /* Pods_ItunesSroreAppList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,7 @@
 				0ECB18D227085A9C00D34504 /* ItunesSroreAppList */,
 				0ECB18D127085A9C00D34504 /* Products */,
 				8FBCF05C22FEC67CE73F5ABD /* Pods */,
+				CED299094FDCABF8608B386B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,8 +157,18 @@
 		8FBCF05C22FEC67CE73F5ABD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				88AB3F06EF057A643D5D22E4 /* Pods-ItunesSroreAppList.debug.xcconfig */,
+				1C809D91DB87A0405ED5408D /* Pods-ItunesSroreAppList.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CED299094FDCABF8608B386B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4418F22DDB8704764C8BB20F /* Pods_ItunesSroreAppList.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,9 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0ECB18E427085AA000D34504 /* Build configuration list for PBXNativeTarget "ItunesSroreAppList" */;
 			buildPhases = (
+				3DAB8C8BB15342E1F8284F2D /* [CP] Check Pods Manifest.lock */,
 				0ECB18CC27085A9C00D34504 /* Sources */,
 				0ECB18CD27085A9C00D34504 /* Frameworks */,
 				0ECB18CE27085A9C00D34504 /* Resources */,
+				D46252E42DEC8FF01CF5869E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,6 +237,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DAB8C8BB15342E1F8284F2D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ItunesSroreAppList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D46252E42DEC8FF01CF5869E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0ECB18CC27085A9C00D34504 /* Sources */ = {
@@ -379,6 +439,7 @@
 		};
 		0ECB18E527085AA000D34504 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88AB3F06EF057A643D5D22E4 /* Pods-ItunesSroreAppList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -399,6 +460,7 @@
 		};
 		0ECB18E627085AA000D34504 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C809D91DB87A0405ED5408D /* Pods-ItunesSroreAppList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
