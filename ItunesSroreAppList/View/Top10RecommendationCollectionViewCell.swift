@@ -27,15 +27,15 @@ class Top10RecommendationCollectionViewCell: UICollectionViewCell {
         appImageView.contentMode = .scaleAspectFill
         appImageView.roundCorners(cornerRadius: 10)
         
-        appNameLabel.font.withSize(15)
+        appNameLabel.font.withSize(13)
         appNameLabel.textColor = .black
         
-        appCategoryLabel.font.withSize(15)
+        appCategoryLabel.font.withSize(11)
         appCategoryLabel.textColor = .darkGray
     }
     
     func uiBind(app: Entry){
-        appImageView.kf.setImage(with: URL(string: app.imImage?.last?.label ?? ""))
+        appImageView.kf.setImage(with: URL(string: app.imImage.last?.label ?? ""))
         appNameLabel.text = app.imName?.label
         appCategoryLabel.text = app.category?.attributes?.label
     }

@@ -12,17 +12,17 @@ import RealmSwift
 
 // MARK: - Entry
 class Entry : Object, Mappable{
-    var imName: IMName?
-    var imImage: [IMImage]?
-    var summary: IMName?
-    var imPrice: IMPrice?
+    @objc dynamic var imName: IMName?
+    var imImage = List<IMImage>()
+    @objc dynamic var summary: IMName?
+    @objc dynamic var imPrice: IMPrice?
 //    var imContentType: IMContentType?
-    var rights, title: IMName?
+    @objc dynamic var rights, title: IMName?
 //    var link: [Link]?
-//    var id: ID?
-    var imArtist: IMArtist?
-    var category: Category?
-    var imReleaseDate: IMReleaseDate?
+    @objc dynamic var id: ID?
+    @objc dynamic var imArtist: IMArtist?
+    @objc dynamic var category: Category?
+    @objc dynamic var imReleaseDate: IMReleaseDate?
 
 //    init(imName: IMName?, imImage: [IMImage]?, summary: IMName?, imPrice: IMPrice?,rights: IMName?, title: IMName?, imArtist: IMArtist?, category: Category?, imReleaseDate: IMReleaseDate?) {
 //        self.imName = imName
@@ -45,7 +45,16 @@ class Entry : Object, Mappable{
 
     func mapping(map: Map) {
         imName <- map["im:name"]
+        
+        var imImage: [IMImage]?
+        
         imImage <- map["im:image"]
+        if let imImage = imImage {
+          for image in imImage {
+            self.imImage.append(image)
+          }
+        }
+
         imPrice <- map["im:price"]
         rights <- map["rights"]
         title <- map["title"]
@@ -53,6 +62,7 @@ class Entry : Object, Mappable{
         imArtist <- map["im:artist"]
         category <- map["category"]
         imReleaseDate <- map ["im:releaseDate"]
+        id <- map["id"]
         
     }
 }
@@ -133,10 +143,6 @@ class IDAttributes : Object, Mappable  {
         imBundleID <- map ["im:bundleId"]
     }
     
-//    init(imID: String?, imBundleID: String?) {
-//        self.imID = imID
-//        self.imBundleID = imBundleID
-//    }
 }
 
 // MARK: - IMArtist

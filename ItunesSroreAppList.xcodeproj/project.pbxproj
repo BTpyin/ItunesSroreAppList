@@ -31,6 +31,7 @@
 		0ECB190B270AC04200D34504 /* AppListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB190A270AC04200D34504 /* AppListTableViewCell.swift */; };
 		0ECB190D270AC16200D34504 /* Top100AppListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB190C270AC16200D34504 /* Top100AppListTableViewCell.swift */; };
 		0ECB190F270AC20300D34504 /* Top10RecommendationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB190E270AC20300D34504 /* Top10RecommendationCollectionViewCell.swift */; };
+		0ECB1911270B356D00D34504 /* CustomAppListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECB1910270B356D00D34504 /* CustomAppListObject.swift */; };
 		8BFD8FFA162FDF3BDE8A7BF8 /* Pods_ItunesSroreAppList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBFE2F833851159CCEA6F71 /* Pods_ItunesSroreAppList.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		0ECB190A270AC04200D34504 /* AppListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListTableViewCell.swift; sourceTree = "<group>"; };
 		0ECB190C270AC16200D34504 /* Top100AppListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top100AppListTableViewCell.swift; sourceTree = "<group>"; };
 		0ECB190E270AC20300D34504 /* Top10RecommendationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top10RecommendationCollectionViewCell.swift; sourceTree = "<group>"; };
+		0ECB1910270B356D00D34504 /* CustomAppListObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAppListObject.swift; sourceTree = "<group>"; };
 		385B856A25033E92317A3432 /* Pods-ItunesSroreAppList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.release.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.release.xcconfig"; sourceTree = "<group>"; };
 		BBBFE2F833851159CCEA6F71 /* Pods_ItunesSroreAppList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ItunesSroreAppList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23E29DED2A5564DF449C753 /* Pods-ItunesSroreAppList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ItunesSroreAppList.debug.xcconfig"; path = "Target Support Files/Pods-ItunesSroreAppList/Pods-ItunesSroreAppList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				0ECB19002708E0D600D34504 /* TopAppObject.swift */,
 				0ECB1902270AB83800D34504 /* LookUPResultResponse.swift */,
 				0ECB1904270AB86000D34504 /* LookUPResultResponsePayload.swift */,
+				0ECB1910270B356D00D34504 /* CustomAppListObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				0ECB18FF2708DA5A00D34504 /* AppListViewController.swift in Sources */,
 				0ECB18F027085E0A00D34504 /* UIViewShadowExtension.swift in Sources */,
 				0ECB18FD270863D200D34504 /* RootNavigationController.swift in Sources */,
+				0ECB1911270B356D00D34504 /* CustomAppListObject.swift in Sources */,
 				0ECB18D427085A9C00D34504 /* AppDelegate.swift in Sources */,
 				0ECB18F72708620C00D34504 /* SyncDataToRealm.swift in Sources */,
 				0ECB18D627085A9C00D34504 /* SceneDelegate.swift in Sources */,

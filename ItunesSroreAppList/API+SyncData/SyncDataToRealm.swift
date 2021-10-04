@@ -64,22 +64,26 @@ class SyncData {
         let urlString = "\(Api.requestBasePath)lookup?id=\(appId)"
         if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
          {
-            Alamofire.request(url, method: .post, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<Top100ResultPayload>)  in
+            Alamofire.request(url, method: .post, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<LookUPResultResponsePayload>)  in
 //                print(response.value)
 //                print(response.error.debugDescription)
 //                print(url)
-                guard let Top100Response = response.result.value else{
-                    completed?(nil)
+                guard let lookUpResponse = response.result.value else{
+                    completed?(.network)
+                    return
+                }
+                guard let data = lookUpResponse.results?.first else {
+                    completed?(.network)
                     return
                 }
 //                print((weatherResponse).weatherMain?.feels_like)
                 SyncData.writeRealmAsync({ (realm) in
-                    realm.delete(realm.objects(Top100ResultPayload.self))
-                    realm.add(Top100Response)
+                    realm.delete(realm.objects(LookUPResultResponse.self))
+                    realm.add(data)
 //                    print(realm.objects(WeatherResponse.self).first3.
                     
                 }, completed:{
-                    completed?(nil)
+                    completed?(.realmWrite)
                   })
             }
         }
@@ -97,7 +101,7 @@ class SyncData {
 //                print(response.error.debugDescription)
 //                print(url)
                 guard let Top100Response = response.result.value else{
-                    completed?(nil)
+                    completed?(.network)
                     return
                 }
 //                print((weatherResponse).weatherMain?.feels_like)
@@ -107,7 +111,7 @@ class SyncData {
 //                    print(realm.objects(WeatherResponse.self).first3.
                     
                 }, completed:{
-                    completed?(nil)
+                    completed?(.realmWrite)
                   })
             }
         }
@@ -123,7 +127,7 @@ class SyncData {
 //                print(response.error.debugDescription)
 //                print(url)
                 guard let top10Response = response.result.value else{
-                    completed?(nil)
+                    completed?(.network)
                     return
                 }
 //                print((weatherResponse).weatherMain?.feels_like)
@@ -132,7 +136,7 @@ class SyncData {
                     realm.add(top10Response)
 //                    print(realm.objects(WeatherResponse.self).first)
                 }, completed:{
-                    completed?(nil)
+                    completed?(.realmWrite)
                   })
             }
         }
