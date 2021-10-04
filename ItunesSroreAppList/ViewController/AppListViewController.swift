@@ -12,6 +12,10 @@ import Kingfisher
 
 class AppListViewController: BaseViewController {
 
+    @IBOutlet weak var serachBarTextField: UITextField!
+    @IBOutlet weak var searchBarView: UIView!
+    
+    @IBOutlet weak var cpntentTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

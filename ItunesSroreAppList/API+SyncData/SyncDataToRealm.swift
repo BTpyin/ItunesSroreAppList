@@ -55,4 +55,88 @@ class SyncData {
       }
       return .other
     }
+    
+    func searchApp(keyword: String, completed :((SyncDataFailReason?) -> Void)?){
+        
+    }
+    
+    func lookUpApp(appId: String, completed: ((SyncDataFailReason?) -> Void)?){
+        let urlString = "\(Api.requestBasePath)lookup?id=\(appId)"
+        if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
+         {
+            Alamofire.request(url, method: .post, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<Top100ResultPayload>)  in
+//                print(response.value)
+//                print(response.error.debugDescription)
+//                print(url)
+                guard let Top100Response = response.result.value else{
+                    completed?(nil)
+                    return
+                }
+//                print((weatherResponse).weatherMain?.feels_like)
+                SyncData.writeRealmAsync({ (realm) in
+                    realm.delete(realm.objects(Top100ResultPayload.self))
+                    realm.add(Top100Response)
+//                    print(realm.objects(WeatherResponse.self).first3.
+                    
+                }, completed:{
+                    completed?(nil)
+                  })
+            }
+        }
+    }
+    
+    
+    
+    func syncTop100App(completed:((SyncDataFailReason?) -> Void)?) {
+        
+        let urlString = "\(Api.requestBasePath)rss/topfreeapplications/limit=100/json"
+        if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
+         {
+            Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<Top100ResultPayload>)  in
+//                print(response.value)
+//                print(response.error.debugDescription)
+//                print(url)
+                guard let Top100Response = response.result.value else{
+                    completed?(nil)
+                    return
+                }
+//                print((weatherResponse).weatherMain?.feels_like)
+                SyncData.writeRealmAsync({ (realm) in
+                    realm.delete(realm.objects(Top100ResultPayload.self))
+                    realm.add(Top100Response)
+//                    print(realm.objects(WeatherResponse.self).first3.
+                    
+                }, completed:{
+                    completed?(nil)
+                  })
+            }
+        }
+    }
+    
+    func syncTop10App(completed:((SyncDataFailReason?) -> Void)?) {
+        
+        let urlString = "\(Api.requestBasePath)rss/topgrossingapplications/limit=10/json"
+        if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
+         {
+            Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<Top10ResultPayload>)  in
+//                print(response.value)
+//                print(response.error.debugDescription)
+//                print(url)
+                guard let top10Response = response.result.value else{
+                    completed?(nil)
+                    return
+                }
+//                print((weatherResponse).weatherMain?.feels_like)
+                SyncData.writeRealmAsync({ (realm) in
+                    realm.delete(realm.objects(Top10ResultPayload.self))
+                    realm.add(top10Response)
+//                    print(realm.objects(WeatherResponse.self).first)
+                }, completed:{
+                    completed?(nil)
+                  })
+            }
+        }
+    }
+    
+    
 }

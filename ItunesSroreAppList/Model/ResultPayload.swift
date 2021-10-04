@@ -6,18 +6,58 @@
 //
 
 import Foundation
+import RealmSwift
 import ObjectMapper
-class ResultPayload:  Mappable {
-    
-    @objc dynamic var resultCount: Int = 0
-    var results: [Album]?
+
+class Feed :  Object, Mappable{
+//    var author: Author?
+    var entries = List<Entry>()
 
     required convenience init?(map: Map) {
         self.init()
     }
 
     func mapping(map: Map) {
-        resultCount <- map["resultCount"]
-        results <- map["results"]
+        var entries: [Entry]?
+        entries <- map["entry"]
+        if let entries = entries {
+          for entry in entries {
+            self.entries.append(entry)
+          }
+        }
+    }
+
+}
+
+
+
+
+class Top10ResultPayload:  Object, Mappable {
+    
+    @objc dynamic var feed: Feed?
+ 
+
+    required convenience init?(map: Map) {
+        self.init()
+    }
+
+    func mapping(map: Map) {
+        feed <- map["feed"]
+        
+    }
+}
+
+class Top100ResultPayload:  Object, Mappable {
+    
+    @objc dynamic var feed: Feed?
+ 
+
+    required convenience init?(map: Map) {
+        self.init()
+    }
+
+    func mapping(map: Map) {
+        feed <- map["feed"]
+        
     }
 }

@@ -13,7 +13,7 @@ class RootNavigationController: UINavigationController {
         super.viewDidLoad()
         
         if let appListViewController = storyboard?.instantiateViewController(withIdentifier: "AppListViewController") as? AppListViewController{
-            albumListViewController.navigationController?.navigationBar.backItem?.hidesBackButton = true
+            appListViewController.navigationController?.navigationBar.backItem?.hidesBackButton = true
             self.pushViewController(appListViewController, animated: true)
         }
         
