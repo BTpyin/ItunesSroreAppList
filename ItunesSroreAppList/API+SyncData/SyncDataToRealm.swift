@@ -119,7 +119,7 @@ class SyncData {
         if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
          {
             Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<Top10ResultPayload>)  in
-//                print(response.value)
+                print(response.value)
 //                print(response.error.debugDescription)
 //                print(url)
                 guard let top10Response = response.result.value else{

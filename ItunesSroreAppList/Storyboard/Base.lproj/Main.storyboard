@@ -12,7 +12,7 @@
         <!--App List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AppListViewController" customModule="ItunesSroreAppList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppListViewController" id="BYZ-38-t0r" customClass="AppListViewController" customModule="ItunesSroreAppList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,7 +320,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="cpntentTableView" destination="uEP-Bx-rQA" id="eGE-Mv-yQc"/>
+                        <outlet property="contentTableView" destination="uEP-Bx-rQA" id="eGE-Mv-yQc"/>
                         <outlet property="searchBarView" destination="E9s-kL-96x" id="mk6-Ux-R3h"/>
                         <outlet property="serachBarTextField" destination="Omh-CL-Eg3" id="ypd-zF-Fl3"/>
                     </connections>
