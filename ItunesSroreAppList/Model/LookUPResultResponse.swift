@@ -28,7 +28,7 @@ class LookUPResultResponse : Object, Mappable{
 //    var genreIDS: [String]?
 //    var isVppDeviceBasedLicensingEnabled: Bool?
 //    var releaseDate: Date?
-//    var trackID: Int?
+    @objc dynamic var trackID: String?
 //    var trackName, sellerName: String?
     @objc dynamic var currentVersionReleaseDate: Date?
     @objc dynamic var releaseNotes: String?
@@ -50,13 +50,18 @@ class LookUPResultResponse : Object, Mappable{
         artworkUrl60 <- map["artworkUrl60"]
         artworkUrl512 <- map["artworkUrl512"]
         artworkUrl100 <- map["artworkUrl100"]
-        artistViewURL <- map["artistViewURL"]
+        artistViewURL <- map["artistViewUrl"]
         averageUserRatingForCurrentVersion <- map["averageUserRatingForCurrentVersion"]
         userRatingCountForCurrentVersion <- map["userRatingCountForCurrentVersion"]
         averageUserRating <- map["averageUserRating"]
+        
+        var id : Int = 0
+        id <- map["trackId"]
+        trackID = "\(id)"
+        
         trackContentRating <- map["trackContentRating"]
         trackCensoredName <- map["trackCensoredName"]
-        trackViewURL <- map["trackViewURL"]
+        trackViewURL <- map["trackViewUrl"]
         primaryGenreName <- map["primaryGenreName"]
         currentVersionReleaseDate <- map["currentVersionReleaseDate"]
         releaseNotes <- map["releaseNotes"]

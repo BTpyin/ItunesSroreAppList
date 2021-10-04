@@ -11,7 +11,7 @@ import RealmSwift
 class CustomAppListObject: Object {
     
     @objc dynamic var appId : String?
-     var rating : Double = 0
+    var rating : Double = 0
     @objc dynamic var name: String?
     @objc dynamic var appCategory : String?
     @objc dynamic var imageLink : String?

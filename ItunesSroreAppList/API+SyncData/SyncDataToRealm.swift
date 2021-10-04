@@ -76,10 +76,13 @@ class SyncData {
                     completed?(.network)
                     return
                 }
+                let predicate = NSPredicate(format: "trackID = %@", appId)
 //                print((weatherResponse).weatherMain?.feels_like)
                 SyncData.writeRealmAsync({ (realm) in
-                    realm.delete(realm.objects(LookUPResultResponse.self))
+//                    realm.delete(realm.objects(LookUPResultResponse.self))
+//                    realm.delete(realm.objects(LookUPResultResponse.self).filter(predicate))
                     realm.add(data)
+                    
 //                    print(realm.objects(WeatherResponse.self).first3.
                     
                 }, completed:{
@@ -123,7 +126,7 @@ class SyncData {
         if let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),let url = URL(string: encoded)
          {
             Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: nil).responseObject{ (response: DataResponse<Top10ResultPayload>)  in
-                print(response.value)
+//                print(response.value)
 //                print(response.error.debugDescription)
 //                print(url)
                 guard let top10Response = response.result.value else{
