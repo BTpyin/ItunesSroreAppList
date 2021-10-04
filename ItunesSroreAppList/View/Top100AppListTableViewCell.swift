@@ -26,6 +26,22 @@ class Top100AppListTableViewCell: UITableViewCell {
     func initUI(){
     }
     
+    func uiBind(entry:Entry, itemNum: Int?){
+        appImageView.kf.setImage(with: URL(string: entry.imImage.last?.label ?? ""))
+        appNameLabel.text = entry.imName?.label
+        appCatLabel.text = entry.category?.attributes?.label
+        itemNumberLabel.text = "\(itemNum ?? 0)"
+        ratingView.isHidden = true
+        guard let itemNum = itemNum else {return}
+        if (itemNum % 2) == 0{
+            //even Number
+            appImageView.roundCorners(cornerRadius: 37.5)
+        }else{
+            //odd Number
+            appImageView.roundCorners(cornerRadius: 15)
+        }
+    }
+    
     func uiBind(entry:Entry, itemNum: Int?, rating: Double, ratingCount: Int){
         appImageView.kf.setImage(with: URL(string: entry.imImage.last?.label ?? ""))
         appNameLabel.text = entry.imName?.label
