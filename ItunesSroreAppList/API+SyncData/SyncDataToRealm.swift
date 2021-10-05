@@ -76,7 +76,7 @@ class SyncData {
                     completed?(.network)
                     return
                 }
-                let predicate = NSPredicate(format: "trackID = %@", appId)
+                let predicate = NSPredicate(format: "trackID == %@", appId)
 //                print((weatherResponse).weatherMain?.feels_like)
                 SyncData.writeRealmAsync({ (realm) in
                     if (realm.objects(LookUPResultResponse.self).filter(predicate).first == nil){

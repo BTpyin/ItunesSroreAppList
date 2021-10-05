@@ -15,12 +15,12 @@ class LookUPResultResponse : Object, Mappable{
     
 //    @objc dynamic var screenshotUrls: [String]?
 //    @objc dynamic var ipadScreenshotUrls, appletvScreenshotUrls: [Any?]?
-    @objc dynamic  var artworkUrl60, artworkUrl512, artworkUrl100: String?
+    @objc dynamic var artworkUrl60, artworkUrl512, artworkUrl100: String?
     @objc dynamic var artistViewURL: String?
 
-    var averageUserRatingForCurrentVersion: Double? = 0
-    var userRatingCountForCurrentVersion: Int? = 0
-    var averageUserRating: Double? = 0
+    @objc dynamic var averageUserRatingForCurrentVersion: Double = 0
+    @objc dynamic var userRatingCountForCurrentVersion: Int = 0
+    @objc dynamic var averageUserRating: Double = 0
     @objc dynamic  var trackContentRating, trackCensoredName: String?
     @objc dynamic var trackViewURL: String?
 //    @objc dynamic var contentAdvisoryRating, formattedPrice, fileSizeBytes, bundleID: String?
@@ -32,14 +32,14 @@ class LookUPResultResponse : Object, Mappable{
 //    var trackName, sellerName: String?
     @objc dynamic var currentVersionReleaseDate: Date?
     @objc dynamic var releaseNotes: String?
-    var primaryGenreID: Int? = 0
+    @objc dynamic var primaryGenreID: Int = 0
     @objc dynamic var currency, welcomeDescription: String?
-    var artistID: Int? = 0
+    @objc dynamic var artistID: Int = 0
     @objc dynamic var artistName: String?
 //    @objc dynamic var genres: [String]?
-    var price: Int? = 0
+    @objc dynamic var price: Int = 0
 //    var version, wrapperType: String?
-    var userRatingCount: Int? = 0
+    @objc dynamic var userRatingCount: Int = 0
     
     override static func primaryKey() -> String? {
       return "trackID"
@@ -77,5 +77,14 @@ class LookUPResultResponse : Object, Mappable{
         price <- map["price"]
         userRatingCount <- map["userRatingCount"]
 //        artistName <- map["artistName"]
+    }
+}
+
+
+extension Double {
+    func round(nearest: Double) -> Double {
+        let n = 1/nearest
+        let numberToRound = self * n
+        return numberToRound.rounded() / n
     }
 }

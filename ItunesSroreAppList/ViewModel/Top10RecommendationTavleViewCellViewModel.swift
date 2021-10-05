@@ -32,12 +32,16 @@ class Top10RecommendationTavleViewCellViewModel:ViewModelType{
     let inOut = InOut()
 
     init() {
-
+        fetchTop10AppFromRealm()
     }
     
     func syncTop10App(completed: ((SyncDataFailReason?) -> Void)?){
-        SyncData().syncTop10App(completed: completed)
-        fetchTop10AppFromRealm()
+        SyncData().syncTop10App(completed: { _ in
+                                    self.fetchTop10AppFromRealm()
+                                    completed
+            
+        })
+        
     }
     
     func fetchTop10AppFromRealm(){

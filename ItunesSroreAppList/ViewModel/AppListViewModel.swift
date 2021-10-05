@@ -54,8 +54,10 @@ class AppListViewModel: ViewModelType{
     
     func syncTop100App(completed: ((SyncDataFailReason?) -> Void)?){
         
-        SyncData().syncTop100App(completed: completed)
-        fetchTop100AppFromRealm()
+        SyncData().syncTop100App(completed: {_ in
+                                    self.fetchTop100AppFromRealm()
+                                    completed})
+        
     }
     
     func fetchTop100AppFromRealm(){

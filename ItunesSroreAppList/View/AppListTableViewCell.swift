@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxRealm
+import RealmSwift
 
 class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
 
@@ -19,11 +20,11 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
     var viewModel = AppListViewModel()
     var currentItems = 10
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        super.updateConstraints()
-        self.tableViewHeightConstraint?.constant = window?.frame.height ?? 500 - AppListViewController.rowHeight
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        super.updateConstraints()
+//        self.tableViewHeightConstraint?.constant = UIScreen.main.bounds.height - 200
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,24 +32,23 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         top100AppListTableView.dataSource = self
 //        self.top100AppListTableView.estimatedRowHeight = 200
 //        self.top100AppListTableView.rowHeight = UITableView.automaticDimension
-        self.tableViewHeightConstraint?.constant = window?.frame.height ?? 500 - AppListViewController.rowHeight
+        self.tableViewHeightConstraint?.constant = UIScreen.main.bounds.height - 200
         
         viewModel.fetchLookedUpAppFromRealm()
         
         viewModel.inOut.top100AppRelay.subscribe(onNext:{ [weak self]_ in
 //            self?.top100AppListTableView.reloadData()
+            self?.layoutSubviews()
             if self?.viewModel.inOut.top100AppRelay.value.count != 0{
                 self?.viewModel.fetchAppList(start: 0, end: self?.currentItems ?? 0, completed: {(failReason) in
                     if failReason != .none{
                         print(failReason?.localizedDescription)
                     }
                 })
-
             }
         }).disposed(by: disposeBag)
         
         viewModel.inOut.lookedUpAppsRelay.subscribe(onNext:{[weak self] _ in
-
             print("lookup realm list updated")
             self?.top100AppListTableView.reloadData()
         }).disposed(by: disposeBag)
@@ -77,7 +77,11 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.inOut.lookedUpAppsRelay.value.count
+        if viewModel.inOut.top100AppRelay.value.count != 0{
+            return viewModel.inOut.lookedUpAppsRelay.value.count
+        }else{
+            return 0
+        }
 //        return viewModel.inOut.top100AppRelay.value.count
 //        return currentItems
     }
@@ -89,13 +93,13 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         }
 //        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: (indexPath.row + 1))
         
-        
-//        guard let app = viewModel.output.appsRelay.value[indexPath.row] else {
+        var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.inOut.top100AppRelay.value[indexPath.row]?.id?.attributes?.imID).first
 //            return cell
 //        }
 //        cell.uiBind(app: app, itemNum: (indexPath.row + 1))
 //        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1)
-        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: viewModel.inOut.lookedUpAppsRelay.value[indexPath.row]?.averageUserRating ?? 0, ratingCount: viewModel.inOut.lookedUpAppsRelay.value[indexPath.row]?.userRatingCount ?? 0)
+        
+        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
 //        cell.ratingView.isHidden = true
 //        viewModel.lookUpApp(appId: , completed: <#T##((SyncDataFailReason?) -> Void)?##((SyncDataFailReason?) -> Void)?##(SyncDataFailReason?) -> Void#>)
         
@@ -107,10 +111,11 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         
 //
 //
-//        if indexPath.row == currentItems - 1{
-//            currentItems += 10
+        if indexPath.row == currentItems - 1{
+            currentItems += 10
+            viewModel.inOut.top100AppRelay.accept(viewModel.inOut.top100AppRelay.value)
 //            self.top100AppListTableView.reloadData()
-//        }
+        }
         
         
 //        if indexPath.row == privateList.count - 1 { // last cell
