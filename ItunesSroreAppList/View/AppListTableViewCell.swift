@@ -20,18 +20,12 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
     var viewModel = AppListViewModel()
     var currentItems = 10
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        super.updateConstraints()
-//        self.tableViewHeightConstraint?.constant = UIScreen.main.bounds.height - 200
-//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         top100AppListTableView.delegate = self
         top100AppListTableView.dataSource = self
-//        self.top100AppListTableView.estimatedRowHeight = 200
-//        self.top100AppListTableView.rowHeight = UITableView.automaticDimension
+
         self.tableViewHeightConstraint?.constant = UIScreen.main.bounds.height - 200
         
         viewModel.fetchLookedUpAppFromRealm()
@@ -44,6 +38,10 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
                     if failReason != .none{
                         print(failReason?.localizedDescription)
                     }
+                    
+                    let loadingDict = ["isLoading": false]
+                    NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
+
                 })
             }
         }).disposed(by: disposeBag)
@@ -82,8 +80,6 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         }else{
             return 0
         }
-//        return viewModel.inOut.top100AppRelay.value.count
-//        return currentItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,35 +90,29 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
 //        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: (indexPath.row + 1))
         
         var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.inOut.top100AppRelay.value[indexPath.row]?.id?.attributes?.imID).first
-//            return cell
-//        }
+
 //        cell.uiBind(app: app, itemNum: (indexPath.row + 1))
 //        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1)
         
         cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
-//        cell.ratingView.isHidden = true
-//        viewModel.lookUpApp(appId: , completed: <#T##((SyncDataFailReason?) -> Void)?##((SyncDataFailReason?) -> Void)?##(SyncDataFailReason?) -> Void#>)
-        
-        
-        
-        
-        
-        
-        
-//
-//
+
         if indexPath.row == currentItems - 1{
-            currentItems += 10
+            if currentItems < viewModel.inOut.top100AppRelay.value.count {
+                currentItems += 10
+                let loadingDict = ["isLoading": true]
+                NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
+            }else{
+                let loadingDict = ["isLoading": false]
+                NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
+            }
             viewModel.inOut.top100AppRelay.accept(viewModel.inOut.top100AppRelay.value)
+            
+            
+
+
 //            self.top100AppListTableView.reloadData()
         }
-        
-        
-//        if indexPath.row == privateList.count - 1 { // last cell
-//            if totalItems > privateList.count { // more items to fetch
-//                loadItem() // increment `fromIndex` by 20 before server call
-//            }
-//        }
+
         return cell
     }
 }

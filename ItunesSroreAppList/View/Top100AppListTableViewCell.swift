@@ -56,7 +56,7 @@ class Top100AppListTableViewCell: UITableViewCell {
         guard let itemNum = itemNum else {return}
         if (itemNum % 2) == 0{
             //even Number
-            appImageView.roundCorners(cornerRadius: 37.5)
+            appImageView.roundCorners(cornerRadius: (Double(appImageView.frame.height) / 2))
         }else{
             //odd Number
             appImageView.roundCorners(cornerRadius: 15)
@@ -74,7 +74,7 @@ class Top100AppListTableViewCell: UITableViewCell {
         guard let itemNum = itemNum else {return}
         if (itemNum % 2) == 0{
             //even Number
-            appImageView.roundCorners(cornerRadius: 37.5)
+            appImageView.roundCorners(cornerRadius: (Double(appImageView.frame.height) / 2))
         }else{
             //odd Number
             appImageView.roundCorners(cornerRadius: 15)
@@ -107,7 +107,7 @@ class Top100AppListTableViewCell: UITableViewCell {
         guard let itemNum = itemNum else {return}
         if (itemNum % 2) == 0{
             //even Number
-            appImageView.roundCorners(cornerRadius: 37.5)
+            appImageView.roundCorners(cornerRadius: (Double(appImageView.frame.height) / 2))
         }else{
             //odd Number
             appImageView.roundCorners(cornerRadius: 15)

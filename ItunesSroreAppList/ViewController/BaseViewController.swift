@@ -14,7 +14,8 @@ class BaseViewController: UIViewController {
     var disposeBag = DisposeBag()
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView?
-
+    @IBOutlet weak var loadingView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,11 +27,12 @@ class BaseViewController: UIViewController {
     
     func startLoading() {
       loadingIndicator?.startAnimating()
-      loadingIndicator?.isHidden = false
+//      loadingIndicator?.isHidden = false
     }
 
     func stopLoading() {
-      loadingIndicator?.isHidden = true
+        loadingIndicator?.stopAnimating()
+//      loadingIndicator?.isHidden = true
     }
 
     func isLoading() -> Bool {

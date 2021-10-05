@@ -20,15 +20,38 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var searchBarView: UIView!
     
     @IBOutlet weak var contentTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        startLoading()
+//        startLoading()
+        
+        let loadingDict = ["isLoading": true]
+        NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
+
         contentTableView.delegate = self
         contentTableView.dataSource = self
         
         viewModel.syncTop10App(completed: nil)
-        
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleMassage),
+                                               name: Notification.Name("isLoadingIndicator"),
+                                               object: nil)
+    }
+    
+    @objc func handleMassage(notification: NSNotification) {
+        if let dict = notification.userInfo as? NSDictionary {
+            if let myMessage = dict["isLoading"] as? Bool{
+                if myMessage {
+                    startLoading()
+                    loadingView.isHidden = false
+                }else{
+                    stopLoading()
+                    loadingView.isHidden = true
+                }
+            }
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -66,10 +89,7 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AppListTableViewCell else {
               fatalError("The dequeued cell is not an instance of AppListTableViewCell.")
             }
-//            
-//            cell.viewModel = viewModel
-//
-//
+
             return cell
         }
         

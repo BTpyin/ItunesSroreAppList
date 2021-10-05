@@ -89,7 +89,7 @@ class AppListViewModel: ViewModelType{
             
         }
         var tempAppList = [CustomAppListObject]()
-        for index in start...end{
+        for index in start...(end-1){
             lookUpApp(appId: inOut.top100AppRelay.value[index]?.id?.attributes?.imID ?? "", completed: completed)
         }
 //        output.appsRelay.accept(tempAppList)
