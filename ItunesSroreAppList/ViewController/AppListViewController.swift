@@ -26,6 +26,8 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
         contentTableView.delegate = self
         contentTableView.dataSource = self
         
+        viewModel.syncTop10App(completed: nil)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -64,10 +66,10 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AppListTableViewCell else {
               fatalError("The dequeued cell is not an instance of AppListTableViewCell.")
             }
-            
-            cell.viewModel = viewModel
-
-
+//            
+//            cell.viewModel = viewModel
+//
+//
             return cell
         }
         

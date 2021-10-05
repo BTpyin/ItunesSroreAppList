@@ -79,11 +79,14 @@ class SyncData {
                 let predicate = NSPredicate(format: "trackID = %@", appId)
 //                print((weatherResponse).weatherMain?.feels_like)
                 SyncData.writeRealmAsync({ (realm) in
-//                    realm.delete(realm.objects(LookUPResultResponse.self))
-//                    realm.delete(realm.objects(LookUPResultResponse.self).filter(predicate))
-                    realm.add(data)
-                    
-//                    print(realm.objects(WeatherResponse.self).first3.
+                    if (realm.objects(LookUPResultResponse.self).filter(predicate).first == nil){
+                        realm.add(data,update: true)
+//                        realm.delete(realm.objects(LookUPResultResponse.self).filter(blankPredicate))
+                    }else{
+                        realm.delete(realm.objects(LookUPResultResponse.self).filter(predicate))
+                        realm.add(data,update: true)
+//                        realm.delete(realm.objects(LookUPResultResponse.self).filter(blankPredicate))
+                    }
                     
                 }, completed:{
                     completed?(.realmWrite)

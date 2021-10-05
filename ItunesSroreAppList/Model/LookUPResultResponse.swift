@@ -41,6 +41,10 @@ class LookUPResultResponse : Object, Mappable{
 //    var version, wrapperType: String?
     var userRatingCount: Int? = 0
     
+    override static func primaryKey() -> String? {
+      return "trackID"
+    }
+    
     
     required convenience init?(map: Map) {
         self.init()

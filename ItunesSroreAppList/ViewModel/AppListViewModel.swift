@@ -36,6 +36,8 @@ class AppListViewModel: ViewModelType{
 
     init() {
         syncTop100App(completed: nil)
+        fetchLookedUpAppFromRealm()
+        fetchTop10AppFromRealm()
     }
     
     func syncTop10App(completed: ((SyncDataFailReason?) -> Void)?){
@@ -64,8 +66,11 @@ class AppListViewModel: ViewModelType{
     }
     
     func lookUpApp(appId : String, completed: ((SyncDataFailReason?) -> Void)?){
-        SyncData().lookUpApp(appId: appId, completed: completed)
-        fetchLookedUpAppFromRealm()
+        SyncData().lookUpApp(appId: appId, completed: {_ in
+            self.fetchLookedUpAppFromRealm()
+            completed?(nil)
+        })
+        
     }
     
     

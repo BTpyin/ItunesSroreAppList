@@ -33,27 +33,25 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
 //        self.top100AppListTableView.rowHeight = UITableView.automaticDimension
         self.tableViewHeightConstraint?.constant = window?.frame.height ?? 500 - AppListViewController.rowHeight
         
-
+        viewModel.fetchLookedUpAppFromRealm()
         
         viewModel.inOut.top100AppRelay.subscribe(onNext:{ [weak self]_ in
-            self?.top100AppListTableView.reloadData()
-//            if self?.viewModel.inOut.top100AppRelay.value.count != 0{
-//                self?.viewModel.fetchAppList(start: 0, end: self?.currentItems ?? 0, completed: {(failReason) in
-//                    if failReason != .none{
-//                        print(failReason?.localizedDescription)
-//                    }
-//                })
-//
-//            }
+//            self?.top100AppListTableView.reloadData()
+            if self?.viewModel.inOut.top100AppRelay.value.count != 0{
+                self?.viewModel.fetchAppList(start: 0, end: self?.currentItems ?? 0, completed: {(failReason) in
+                    if failReason != .none{
+                        print(failReason?.localizedDescription)
+                    }
+                })
+
+            }
         }).disposed(by: disposeBag)
         
-//        viewModel.inOut.lookedUpAppsRelay.subscribe(onNext:{[weak self] _ in
-////            for index in 0 ... (self?.viewModel.inOut.lookedUpAppsRelay.value.count ?? 0){
-////                CustomAppListObject.init(lookUpResponse: self?.viewModel.inOut.lookedUpAppsRelay.value[index] ?? <#default value#>, entry: <#T##Entry#>)
-////            }
-//            print("lookup realm list updated")
-//            self?.top100AppListTableView.reloadData()
-//        }).disposed(by: disposeBag)
+        viewModel.inOut.lookedUpAppsRelay.subscribe(onNext:{[weak self] _ in
+
+            print("lookup realm list updated")
+            self?.top100AppListTableView.reloadData()
+        }).disposed(by: disposeBag)
         
 //        Observable.changeset(from: (viewModel.input.lookUpAppFromRealm)!).subscribe(onNext: { results in
 //            self.top100AppListTableView.reloadData()
@@ -79,9 +77,9 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.inOut.lookedUpAppsRelay.value.count
+        return viewModel.inOut.lookedUpAppsRelay.value.count
 //        return viewModel.inOut.top100AppRelay.value.count
-        return currentItems
+//        return currentItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,8 +94,8 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
 //            return cell
 //        }
 //        cell.uiBind(app: app, itemNum: (indexPath.row + 1))
-        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1)
-//        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: viewModel.inOut.lookedUpAppsRelay.value[indexPath.row]?.averageUserRating ?? 0, ratingCount: viewModel.inOut.lookedUpAppsRelay.value[indexPath.row]?.userRatingCount ?? 0)
+//        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1)
+        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: viewModel.inOut.lookedUpAppsRelay.value[indexPath.row]?.averageUserRating ?? 0, ratingCount: viewModel.inOut.lookedUpAppsRelay.value[indexPath.row]?.userRatingCount ?? 0)
 //        cell.ratingView.isHidden = true
 //        viewModel.lookUpApp(appId: , completed: <#T##((SyncDataFailReason?) -> Void)?##((SyncDataFailReason?) -> Void)?##(SyncDataFailReason?) -> Void#>)
         
@@ -107,12 +105,12 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         
         
         
-        
-        
-        if indexPath.row == currentItems - 1{
-            currentItems += 10
-            self.top100AppListTableView.reloadData()
-        }
+//
+//
+//        if indexPath.row == currentItems - 1{
+//            currentItems += 10
+//            self.top100AppListTableView.reloadData()
+//        }
         
         
 //        if indexPath.row == privateList.count - 1 { // last cell

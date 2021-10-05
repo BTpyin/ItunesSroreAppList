@@ -28,7 +28,7 @@ class Top10RecommendationTableViewCell: UITableViewCell, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.output.appsRelay.value.count ?? 0
+        return viewModel.output.appsRelay.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
