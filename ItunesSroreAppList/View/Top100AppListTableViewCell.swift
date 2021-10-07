@@ -47,6 +47,8 @@ class Top100AppListTableViewCell: UITableViewCell {
         }
     }
     
+    //for debug use only
+    
     func uiBind(entry:Entry, itemNum: Int?){
         appImageView.kf.setImage(with: URL(string: entry.imImage.last?.label ?? ""))
         appNameLabel.text = entry.imName?.label
@@ -64,6 +66,8 @@ class Top100AppListTableViewCell: UITableViewCell {
  
     }
     
+    
+    //actual uiBind Function
     func uiBind(entry:Entry, itemNum: Int?, rating: Double, ratingCount: Int){
         var tmpRating = rating.round(nearest: 0.5)
         appImageView.kf.setImage(with: URL(string: entry.imImage.last?.label ?? ""))
@@ -99,19 +103,19 @@ class Top100AppListTableViewCell: UITableViewCell {
         
     }
     
-    func uiBind(app: CustomAppListObject, itemNum: Int?){
-        appImageView.kf.setImage(with: URL(string: app.imageLink ?? ""))
-        appNameLabel.text = app.name
-        appCatLabel.text = app.appCategory
-        itemNumberLabel.text = "\(itemNum ?? 0)"
-        guard let itemNum = itemNum else {return}
-        if (itemNum % 2) == 0{
-            //even Number
-            appImageView.roundCorners(cornerRadius: (Double(appImageView.frame.height) / 2))
-        }else{
-            //odd Number
-            appImageView.roundCorners(cornerRadius: 15)
-        }
-    }
+//    func uiBind(app: CustomAppListObject, itemNum: Int?){
+//        appImageView.kf.setImage(with: URL(string: app.imageLink ?? ""))
+//        appNameLabel.text = app.name
+//        appCatLabel.text = app.appCategory
+//        itemNumberLabel.text = "\(itemNum ?? 0)"
+//        guard let itemNum = itemNum else {return}
+//        if (itemNum % 2) == 0{
+//            //even Number
+//            appImageView.roundCorners(cornerRadius: (Double(appImageView.frame.height) / 2))
+//        }else{
+//            //odd Number
+//            appImageView.roundCorners(cornerRadius: 15)
+//        }
+//    }
 
 }

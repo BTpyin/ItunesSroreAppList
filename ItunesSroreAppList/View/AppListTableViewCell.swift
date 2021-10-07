@@ -51,14 +51,7 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
             self?.top100AppListTableView.reloadData()
         }).disposed(by: disposeBag)
         
-//        Observable.changeset(from: (viewModel.input.lookUpAppFromRealm)!).subscribe(onNext: { results in
-//            self.top100AppListTableView.reloadData()
-//        }).disposed(by: disposeBag)
-        
-//        viewModel.output.appsRelay.subscribe(onNext: {[weak self] _ in
-//            self?.top100AppListTableView.reloadData()
-//
-//        }).disposed(by: disposeBag)
+
 
     }
     
@@ -108,9 +101,6 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
                 NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
             }
             viewModel.inOut.top100AppRelay.accept(viewModel.inOut.top100AppRelay.value)
-            
-            
-
 
 //            self.top100AppListTableView.reloadData()
         }
