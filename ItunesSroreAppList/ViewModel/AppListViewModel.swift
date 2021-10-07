@@ -23,6 +23,7 @@ class AppListViewModel: ViewModelType{
     struct Output {
         let appsRelay = BehaviorRelay<[CustomAppListObject?]>(value:[])
         let top10AppsRelay = BehaviorRelay<[Entry?]>(value:[])
+        let searchResultRelay = BehaviorRelay<[Entry?]>(value:[])
     }
 
     struct InOut {

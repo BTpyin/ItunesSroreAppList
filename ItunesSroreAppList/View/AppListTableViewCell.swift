@@ -38,10 +38,8 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
                     if failReason != .none{
                         print(failReason?.localizedDescription)
                     }
-                    
                     let loadingDict = ["isLoading": false]
                     NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
-
                 })
             }
         }).disposed(by: disposeBag)
