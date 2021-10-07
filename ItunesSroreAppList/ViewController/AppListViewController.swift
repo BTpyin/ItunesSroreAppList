@@ -7,7 +7,6 @@
 
 import UIKit
 import RxRealm
-import RxCocoa
 import RealmSwift
 import Kingfisher
 
@@ -17,10 +16,10 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
     
     var viewModel = AppListViewModel()
 
+    @IBOutlet weak var searchResultTableView: UITableView!
     @IBOutlet weak var serachBarTextField: UITextField!
     @IBOutlet weak var searchBarView: UIView!
     
-    @IBOutlet weak var searchedAppResultTableView: UITableView!
     @IBOutlet weak var contentTableView: UITableView!
     
     override func viewDidLoad() {
@@ -33,30 +32,46 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
         contentTableView.delegate = self
         contentTableView.dataSource = self
         
-        searchedAppResultTableView.delegate = self
-        searchedAppResultTableView.dataSource = self
+        searchResultTableView.delegate = self
+        searchResultTableView.dataSource = self
         
         viewModel.syncTop10App(completed: nil)
-        viewModel.fetchLookedUpAppFromRealm()
-//        serachBarTextField.rx.text.asObservable().subscribe(onNext:{ [weak self] in
-////            let searchText = "\($0)"
-//            if $0 == ""{
-//                self?.searchedAppResultTableView.isHidden = true
-//                self?.contentTableView.isHidden = false
-//            }else{
-//                self?.contentTableView.isHidden = true
-//                self?.searchedAppResultTableView.isHidden = false
-//                let predicate = NSPredicate(format: "imName.label == %@", "\($0)")
-//                var searchList = self?.viewModel.input.top100AppFromRealm?.first?.feed?.entries.filter(predicate).toArray()
-//                searchList?.append(contentsOf: self?.viewModel.input.top10AppFromRealm?.first?.feed?.entries.filter(predicate).toArray() ?? [])
-//                self?.viewModel.output.searchResultRelay.accept(searchList ?? [])
-//            }
-//        }).disposed(by: disposeBag)
+        hideKeyboardWhenTappedAround()
+        // Do any additional setup after loading the view.
         
-        viewModel.output.searchResultRelay.subscribe(onNext:{[weak self]_ in
-            self?.searchedAppResultTableView.reloadData()
+        serachBarTextField.rx.text.subscribe(onNext:{[weak self] in
+            let inputText = "\($0 ?? "")"
+            if $0 == ""{
+                self?.searchResultTableView.isHidden = true
+                self?.contentTableView.isHidden = false
+            }else{
+                self?.searchResultTableView.isHidden = false
+                self?.contentTableView.isHidden = true
+                let predicate = NSPredicate(format: "imName.label == %@", "\($0)")
+                var searchList: [Entry]? = self?.viewModel.input.top100AppFromRealm?.first?.feed?.entries.filter { (app) -> Bool in
+                    if app.imName?.label?.range(of: inputText, options: .caseInsensitive) != nil{
+                        return true
+                    }
+                    return false
+                }
+                searchList?.append(contentsOf: self?.viewModel.input.top10AppFromRealm?.first?.feed?.entries.filter{ (app) -> Bool in
+                    if app.imName?.label?.range(of: inputText, options: .caseInsensitive) != nil{
+                        return true
+                    }
+                    return false
+                } ?? [])
+                
+                for entity in searchList!{
+                    self?.viewModel.lookUpApp(appId: entity.id?.attributes?.imID ?? "", completed: nil)
+                }
+                self?.viewModel.output.searchResultRelay.accept(searchList ?? [])
+            }
         }).disposed(by: disposeBag)
         
+        viewModel.output.searchResultRelay.subscribe(onNext:{[weak self]_ in
+            self?.searchResultTableView.reloadData()
+        }).disposed(by: disposeBag)
+
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleMassage),
@@ -87,25 +102,27 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView === searchedAppResultTableView{
-            if viewModel.inOut.top100AppRelay.value.count != 0{
-                return viewModel.output.appsRelay.value.count
-            }else {
-                return 0
-            }
+        if tableView === searchResultTableView{
+            return viewModel.output.searchResultRelay.value.count
         }else if tableView === contentTableView{
             return 2
-        }else{
-            fatalError("table view is missed")
+        }else {
+            fatalError("The table view is not found")
         }
+        
+        
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView === searchedAppResultTableView{
-            let cellIdentifier = "AppListTableViewCell"
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AppListTableViewCell else {
-              fatalError("The dequeued cell is not an instance of AppListTableViewCell.")
+        if tableView === searchResultTableView{
+            let cellIdentifier = "SearchResultTableViewCell"
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? Top100AppListTableViewCell else {
+              fatalError("The dequeued cell is not an instance of SearchResultTableViewCell.")
             }
+            var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.output.searchResultRelay.value[indexPath.row]?.id?.attributes?.imID).first
+            
+            cell.uiBind(entry: viewModel.output.searchResultRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
 
             return cell
         }else if tableView === contentTableView{
@@ -127,18 +144,18 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
                 })
                 return cell
             }else{
-                let cellIdentifier = "SearchedAppResultTableViewCell"
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? Top100AppListTableViewCell else {
+                let cellIdentifier = "AppListTableViewCell"
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AppListTableViewCell else {
                   fatalError("The dequeued cell is not an instance of AppListTableViewCell.")
                 }
-                var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.output.searchResultRelay.value[indexPath.row]?.id?.attributes?.imID).first
-                
-                cell.uiBind(entry: viewModel.output.searchResultRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
+
                 return cell
             }
-        }else{
-            fatalError("table view is missed")
+            
+        }else {
+            fatalError("The table view is not found")
         }
+        
     }
     
 

@@ -73,8 +73,10 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.inOut.top100AppRelay.value.count != 0{
+        if viewModel.inOut.top100AppRelay.value.count != 0 && viewModel.inOut.lookedUpAppsRelay.value.count <= 100{
             return viewModel.inOut.lookedUpAppsRelay.value.count
+        }else if viewModel.inOut.top100AppRelay.value.count != 0 && viewModel.inOut.lookedUpAppsRelay.value.count > 100{
+            return 100
         }else{
             return 0
         }
