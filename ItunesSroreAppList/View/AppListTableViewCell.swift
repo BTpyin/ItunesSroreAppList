@@ -47,7 +47,7 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         }).disposed(by: disposeBag)
         
         viewModel.inOut.lookedUpAppsRelay.subscribe(onNext:{[weak self] _ in
-            print("lookup realm list updated")
+//            print("lookup realm list updated")
             self?.top100AppListTableView.reloadData()
         }).disposed(by: disposeBag)
         
@@ -84,11 +84,7 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         }
 //        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: (indexPath.row + 1))
         
-        var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.inOut.top100AppRelay.value[indexPath.row]?.id?.attributes?.imID).first
-
-//        cell.uiBind(app: app, itemNum: (indexPath.row + 1))
-//        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1)
-        
+        var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.inOut.top100AppRelay.value[indexPath.row]?.id?.attributes?.imID).first    
         cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
 
         if indexPath.row == currentItems - 1{

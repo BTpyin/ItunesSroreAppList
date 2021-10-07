@@ -45,7 +45,6 @@ class Top10RecommendationTavleViewCellViewModel:ViewModelType{
     }
     
     func fetchTop10AppFromRealm(){
-//        currentWeatherFromRealm = try? Realm().objects(WeatherResponse.self)
         input.top10AppFromRealm = try? Realm().objects(Top10ResultPayload.self)
         output.appsRelay.accept(input.top10AppFromRealm?.first?.feed?.entries.toArray() ?? [])
         

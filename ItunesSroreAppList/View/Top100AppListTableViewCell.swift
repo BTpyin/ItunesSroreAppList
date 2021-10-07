@@ -103,19 +103,4 @@ class Top100AppListTableViewCell: UITableViewCell {
         
     }
     
-//    func uiBind(app: CustomAppListObject, itemNum: Int?){
-//        appImageView.kf.setImage(with: URL(string: app.imageLink ?? ""))
-//        appNameLabel.text = app.name
-//        appCatLabel.text = app.appCategory
-//        itemNumberLabel.text = "\(itemNum ?? 0)"
-//        guard let itemNum = itemNum else {return}
-//        if (itemNum % 2) == 0{
-//            //even Number
-//            appImageView.roundCorners(cornerRadius: (Double(appImageView.frame.height) / 2))
-//        }else{
-//            //odd Number
-//            appImageView.roundCorners(cornerRadius: 15)
-//        }
-//    }
-
 }

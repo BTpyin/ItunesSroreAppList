@@ -71,6 +71,11 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
         viewModel.output.searchResultRelay.subscribe(onNext:{[weak self]_ in
             self?.searchResultTableView.reloadData()
         }).disposed(by: disposeBag)
+        
+        viewModel.inOut.lookedUpAppsRelay.subscribe(onNext:{[weak self] _ in
+//            print("lookup realm list updated")
+            self?.searchResultTableView.reloadData()
+        }).disposed(by: disposeBag)
 
         
         NotificationCenter.default.addObserver(self,
@@ -109,9 +114,6 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
         }else {
             fatalError("The table view is not found")
         }
-        
-        
-
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
