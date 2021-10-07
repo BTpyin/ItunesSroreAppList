@@ -24,20 +24,6 @@ class Entry : Object, Mappable{
     @objc dynamic var category: Category?
     @objc dynamic var imReleaseDate: IMReleaseDate?
 
-//    init(imName: IMName?, imImage: [IMImage]?, summary: IMName?, imPrice: IMPrice?,rights: IMName?, title: IMName?, imArtist: IMArtist?, category: Category?, imReleaseDate: IMReleaseDate?) {
-//        self.imName = imName
-//        self.imImage = imImage
-//        self.summary = summary
-//        self.imPrice = imPrice
-////        self.imContentType = imContentType
-//        self.rights = rights
-//        self.title = title
-////        self.link = link
-////        self.id = id
-//        self.imArtist = imArtist
-//        self.category = category
-//        self.imReleaseDate = imReleaseDate
-//    }
     
     required convenience init?(map: Map) {
         self.init()
@@ -71,10 +57,6 @@ class Entry : Object, Mappable{
 class Category : Object, Mappable {
     @objc dynamic var attributes: CategoryAttributes?
 
-//    init(attributes: CategoryAttributes?) {
-//        self.attributes = attributes
-//    }
-//
     required convenience init?(map: Map) {
         self.init()
     }
@@ -102,23 +84,12 @@ class CategoryAttributes: Object, Mappable  {
         label <- map ["label"]
     }
 
-//    init(imID: String?, term: String?, scheme: String?, label: String?) {
-//        self.imID = imID
-//        self.term = term
-//        self.scheme = scheme
-//        self.label = label
-//    }
 }
 
 // MARK: - ID
 class ID : Object, Mappable   {
     @objc dynamic var label: String?
     @objc dynamic var attributes: IDAttributes?
-
-//    init(label: String?, attributes: IDAttributes?) {
-//        self.label = label
-//        self.attributes = attributes
-//    }
     
     required convenience init?(map: Map) {
         self.init()
@@ -150,10 +121,6 @@ class IMArtist : Object, Mappable {
     @objc dynamic var label: String?
     @objc dynamic var attributes: IMArtistAttributes?
 
-//    init(label: String?, attributes: IMArtistAttributes?) {
-//        self.label = label
-//        self.attributes = attributes
-//    }
     
     required convenience init?(map: Map) {
         self.init()
@@ -170,9 +137,6 @@ class IMArtistAttributes : Object, Mappable {
     
     @objc dynamic var href: String?
 
-//    init(href: String?) {
-//        self.href = href
-//    }
     
     required convenience init?(map: Map) {
         self.init()
@@ -283,10 +247,6 @@ class IMReleaseDate : Object, Mappable{
     @objc dynamic var label: Date?
     @objc dynamic var attributes: IMName?
 
-//    init(label: Date?, attributes: IMName?) {
-//        self.label = label
-//        self.attributes = attributes
-//    }
     required convenience init?(map: Map) {
         self.init()
     }

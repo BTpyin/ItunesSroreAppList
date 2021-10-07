@@ -36,7 +36,7 @@ class Top10RecommendationTableViewCell: UITableViewCell, UICollectionViewDelegat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? Top10RecommendationCollectionViewCell else {
           fatalError("The dequeued cell is not an instance of Top10RecommendationCollectionViewCell.")
         }
-//
+
         cell.uiBind(app: viewModel.output.appsRelay.value[indexPath.row] ?? Entry())
         return cell
     }
