@@ -77,7 +77,7 @@ class SyncData {
                     return
                 }
                 let predicate = NSPredicate(format: "trackID == %@", appId)
-//                print((weatherResponse).weatherMain?.feels_like)
+
                 SyncData.writeRealmAsync({ (realm) in
                     if (realm.objects(LookUPResultResponse.self).filter(predicate).first == nil){
                         realm.add(data,update: true)
@@ -110,7 +110,7 @@ class SyncData {
                     completed?(.network)
                     return
                 }
-//                print((weatherResponse).weatherMain?.feels_like)
+
                 SyncData.writeRealmAsync({ (realm) in
                     realm.delete(realm.objects(Top100ResultPayload.self))
                     realm.add(Top100Response)
@@ -136,7 +136,7 @@ class SyncData {
                     completed?(.network)
                     return
                 }
-//                print((weatherResponse).weatherMain?.feels_like)
+
                 SyncData.writeRealmAsync({ (realm) in
                     realm.delete(realm.objects(Top10ResultPayload.self))
                     realm.add(top10Response)

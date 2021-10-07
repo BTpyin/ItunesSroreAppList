@@ -23,6 +23,7 @@ class AppListViewModel: ViewModelType{
     struct Output {
         let appsRelay = BehaviorRelay<[CustomAppListObject?]>(value:[])
         let top10AppsRelay = BehaviorRelay<[Entry?]>(value:[])
+        let searchResultRelay = BehaviorRelay<[Entry?]>(value:[])
     }
 
     struct InOut {
@@ -46,7 +47,7 @@ class AppListViewModel: ViewModelType{
     }
     
     func fetchTop10AppFromRealm(){
-//        currentWeatherFromRealm = try? Realm().objects(WeatherResponse.self)
+
         input.top10AppFromRealm = try? Realm().objects(Top10ResultPayload.self)
         output.top10AppsRelay.accept(input.top10AppFromRealm?.first?.feed?.entries.toArray() ?? [])
         
@@ -61,7 +62,7 @@ class AppListViewModel: ViewModelType{
     }
     
     func fetchTop100AppFromRealm(){
-//        currentWeatherFromRealm = try? Realm().objects(WeatherResponse.self)
+
         input.top100AppFromRealm = try? Realm().objects(Top100ResultPayload.self)
         inOut.top100AppRelay.accept(input.top100AppFromRealm?.first?.feed?.entries.toArray() ?? [])
         
@@ -77,10 +78,15 @@ class AppListViewModel: ViewModelType{
     
     
     func fetchLookedUpAppFromRealm(){
-//        currentWeatherFromRealm = try? Realm().objects(WeatherResponse.self)
+
         input.lookUpAppFromRealm = try? Realm().objects(LookUPResultResponse.self)
         inOut.lookedUpAppsRelay.accept(input.lookUpAppFromRealm?.toArray() ?? [])
         
+    }
+    
+    func fetchLookUpApp(appid: String, completed: ((SyncDataFailReason?) -> Void)?){
+
+            lookUpApp(appId: appid, completed: completed)
     }
     
     func fetchAppList(start: Int, end: Int, completed: ((SyncDataFailReason?) -> Void)?){
@@ -88,7 +94,7 @@ class AppListViewModel: ViewModelType{
             completed?(.network)
             
         }
-        var tempAppList = [CustomAppListObject]()
+
         for index in start...(end-1){
             lookUpApp(appId: inOut.top100AppRelay.value[index]?.id?.attributes?.imID ?? "", completed: completed)
         }
