@@ -47,7 +47,7 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
             }else{
                 self?.searchResultTableView.isHidden = false
                 self?.contentTableView.isHidden = true
-                let predicate = NSPredicate(format: "imName.label == %@", "\($0)")
+
                 var searchList: [Entry]? = self?.viewModel.input.top100AppFromRealm?.first?.feed?.entries.filter { (app) -> Bool in
                     if app.imName?.label?.range(of: inputText, options: .caseInsensitive) != nil{
                         return true
@@ -85,7 +85,7 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
     }
     
     @objc func handleMassage(notification: NSNotification) {
-        if let dict = notification.userInfo as? NSDictionary {
+        if let dict = notification.userInfo as NSDictionary? {
             if let myMessage = dict["isLoading"] as? Bool{
                 if myMessage {
                     startLoading()
@@ -98,7 +98,7 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
          return UITableView.automaticDimension
      }
     
@@ -122,7 +122,7 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
             guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? Top100AppListTableViewCell else {
               fatalError("The dequeued cell is not an instance of SearchResultTableViewCell.")
             }
-            var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.output.searchResultRelay.value[indexPath.row]?.id?.attributes?.imID).first
+            let tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.output.searchResultRelay.value[indexPath.row]?.id?.attributes?.imID).first
             
             cell.uiBind(entry: viewModel.output.searchResultRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
 
@@ -134,15 +134,16 @@ class AppListViewController: BaseViewController, UITableViewDataSource, UITableV
                   fatalError("The dequeued cell is not an instance of Top10RecommendationTableViewCell.")
                 }
                 cell.viewModel.syncTop10App(completed: {[weak self](failReason) in
-                    self?.stopLoading()
-                    if let tempTop10Response = try? Realm().objects(Top10ResultPayload.self){
+                    let loadingDict = ["isLoading": true]
+                    NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
+                    if (try? Realm().objects(Top10ResultPayload.self)) != nil{
                         cell.top10RecommendationListCollectionView.reloadData()
                         AppListViewController.rowHeight = cell.frame.height
                     }else{
                         self?.showErrorAlert(reason: failReason, showCache: true, okClicked: nil)
 
                     }
-                    print(failReason?.localizedDescription)
+                    print(failReason?.localizedDescription ?? "")
                 })
                 return cell
             }else{

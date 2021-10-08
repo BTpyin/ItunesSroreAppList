@@ -36,7 +36,7 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
             if self?.viewModel.inOut.top100AppRelay.value.count != 0{
                 self?.viewModel.fetchAppList(start: 0, end: self?.currentItems ?? 0, completed: {(failReason) in
                     if failReason != .none{
-                        print(failReason?.localizedDescription)
+                        print(failReason?.localizedDescription ?? "")
                     }
                     let loadingDict = ["isLoading": false]
                     NotificationCenter.default.post(name: Notification.Name("isLoadingIndicator"), object: nil, userInfo: loadingDict)
@@ -61,7 +61,7 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
@@ -82,7 +82,7 @@ class AppListTableViewCell: UITableViewCell, UITableViewDelegate, UITableViewDat
         }
 //        cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: (indexPath.row + 1))
         
-        var tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.inOut.top100AppRelay.value[indexPath.row]?.id?.attributes?.imID).first    
+        let tmpLookupApp = try? Realm().objects(LookUPResultResponse.self).filter("trackID == %@", viewModel.inOut.top100AppRelay.value[indexPath.row]?.id?.attributes?.imID).first    
         cell.uiBind(entry: viewModel.inOut.top100AppRelay.value[indexPath.row] ?? Entry(), itemNum: indexPath.row + 1, rating: tmpLookupApp?.averageUserRatingForCurrentVersion ?? 0, ratingCount: tmpLookupApp?.userRatingCountForCurrentVersion ?? 0)
 
         if indexPath.row == currentItems - 1{
